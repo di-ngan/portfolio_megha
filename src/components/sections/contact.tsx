@@ -134,15 +134,17 @@ export function Contact() {
 
                 {/* Copy button — email only */}
                 {isEmail && (
-                  <button
-                    type="button"
+                  <div
+                    role="button"
+                    tabIndex={0}
                     onClick={copyEmail}
-                    className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg transition-colors"
+                    onKeyDown={e => e.key === 'Enter' && copyEmail(e as unknown as React.MouseEvent)}
+                    className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg transition-colors cursor-pointer"
                     style={{ background: copied ? 'rgba(94,207,168,0.15)' : 'rgba(255,255,255,0.06)', color: copied ? '#5ECFA8' : 'rgba(255,255,255,0.4)' }}
                     title="Copy email"
                   >
                     {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-                  </button>
+                  </div>
                 )}
 
                 {/* Hover glow */}
