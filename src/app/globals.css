@@ -1,0 +1,323 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.6%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.6%;
+    --primary: 336 60% 67%;
+    --primary-foreground: 210 40% 96%;
+    --secondary: 0 0% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 336 60% 67%;
+    --accent-foreground: 210 40% 96%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 210 40% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 210 40% 98%;
+    --primary: 336 60% 67%;
+    --primary-foreground: 0 0% 8%;
+    --secondary: 0 0% 40%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 215 20.3% 65.1%;
+    --accent: 336 60% 67%;
+    --accent-foreground: 0 0% 8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-card;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1 {
+    @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl;
+  }
+
+  h2 {
+    @apply scroll-m-20 text-3xl font-semibold tracking-tight transition-colors first:mt-0;
+  }
+
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  p {
+    @apply leading-7 [&:not(:last-child)]:mb-2;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Selection color */
+::selection {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+/* Focus visible outline */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-in {
+    animation: slide-up 0.5s ease-out forwards;
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-white/40 dark:bg-slate-950/40 border border-white/40 dark:border-slate-700/50 shadow-lg dark:shadow-slate-950/50;
+  }
+
+  .glass-hover {
+    @apply glass hover:bg-white/50 dark:hover:bg-slate-950/50 hover:border-white/60 dark:hover:border-slate-600/70 transition-all duration-300 hover:shadow-xl;
+  }
+
+  .glass-light {
+    @apply backdrop-blur-xl bg-gradient-to-br from-white/50 to-white/30 dark:from-slate-950/50 dark:to-slate-950/30 border border-slate-300/50 dark:border-slate-700/50 shadow-md dark:shadow-slate-950/40;
+  }
+
+  .glass-light-hover {
+    @apply glass-light hover:from-white/60 hover:to-white/40 dark:hover:from-slate-950/60 dark:hover:to-slate-950/40 hover:border-slate-300/70 dark:hover:border-slate-600/70 transition-all duration-300 hover:shadow-lg;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .card-border {
+    @apply border border-slate-200/50 dark:border-slate-700/50;
+  }
+
+  .card-shadow {
+    @apply shadow-sm dark:shadow-slate-950/20;
+  }
+
+  .text-primary-strong {
+    @apply text-slate-900 dark:text-slate-50;
+  }
+
+  .text-secondary-strong {
+    @apply text-slate-700 dark:text-slate-200;
+  }
+}
+
+/* Section crossfade — fades backgrounds at boundaries so sections blend together */
+section::before,
+section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 6rem;
+  pointer-events: none;
+  z-index: 2;
+}
+
+section::before {
+  top: 0;
+  background: linear-gradient(to bottom, hsl(var(--background)), transparent);
+}
+
+section::after {
+  bottom: 0;
+  background: linear-gradient(to top, hsl(var(--background)), transparent);
+}
+
+/* First section needs no top fade, last section needs no bottom fade */
+section:first-of-type::before,
+section:last-of-type::after {
+  display: none;
+}
+
+/* Enhanced Design Elements */
+@layer utilities {
+  /* Decorative divider */
+  .divider-rose {
+    @apply h-1 w-12 bg-gradient-to-r from-primary to-primary/50 rounded-full;
+  }
+
+  /* Rose-tinted glass effect */
+  .glass-rose {
+    @apply backdrop-blur-xl bg-primary/5 dark:bg-primary/8 border border-primary/10 dark:border-primary/20 shadow-lg dark:shadow-black/30;
+  }
+
+  .glass-rose-hover {
+    @apply glass-rose hover:bg-primary/10 dark:hover:bg-primary/12 hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300;
+  }
+
+  /* Enhanced text styling */
+  .text-rose-accent {
+    @apply text-primary font-semibold;
+  }
+
+  /* Link styling */
+  a {
+    @apply relative transition-colors duration-300;
+  }
+
+  /* Elegant underline effect for links in text content */
+  .prose a,
+  article a {
+    @apply text-primary hover:text-primary/80 underline underline-offset-2;
+  }
+
+  /* Premium shadow effects */
+  .shadow-rose {
+    @apply shadow-lg shadow-primary/10 dark:shadow-primary/5;
+  }
+
+  .shadow-rose-lg {
+    @apply shadow-xl shadow-primary/15 dark:shadow-primary/10;
+  }
+
+  /* Focus effects with rose color */
+  .focus-rose:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 3px;
+  }
+
+  /* Decorative accent line */
+  .accent-line-rose {
+    @apply relative before:absolute before:bottom-0 before:left-0 before:h-1 before:w-12 before:bg-primary before:rounded-full;
+  }
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-300;
+}
+
+/* Link hover effect */
+a {
+  @apply hover:opacity-80 transition-opacity duration-300;
+}
+
+/* Button focus state */
+button:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Animation Keyframes */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+  }
+}
+
+@keyframes pulse-light {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Light mode improvements */
+@media (prefers-color-scheme: light) {
+  .glass {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(12px);
+    border-color: rgba(148, 163, 184, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(100, 116, 139, 0.5);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0f172a;
+  }
+
+  p {
+    color: #334155;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  h1, h2, h3, h4, h5, h6 {
+    color: #f1f5f9;
+  }
+
+  p {
+    color: #cbd5e1;
+  }
+}
