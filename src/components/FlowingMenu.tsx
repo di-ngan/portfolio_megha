@@ -170,6 +170,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
       <a
         className="menu__item-link"
         href={link}
+        onClick={(e) => { if (!link || link === '#' || link.startsWith('#')) e.preventDefault(); }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{ color: textColor }}

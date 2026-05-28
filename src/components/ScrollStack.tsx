@@ -298,7 +298,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       ref={scrollerRef}
       style={useWindowScroll ? { overflow: 'visible', height: 'auto' } : undefined}
     >
-      <div className="scroll-stack-inner">
+      <div className={`scroll-stack-inner${useWindowScroll ? ' scroll-stack-inner--window' : ''}`}>
         {children}
         <div className="scroll-stack-end" />
       </div>

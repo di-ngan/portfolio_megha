@@ -21,13 +21,19 @@
   min-height: 100vh;
 }
 
+/* Window-scroll mode: parent container already handles horizontal spacing */
+.scroll-stack-inner--window {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .scroll-stack-card {
   transform-origin: top center;
   will-change: transform, filter;
   backface-visibility: hidden;
   transform-style: preserve-3d;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  height: 18rem;
+  height: clamp(15rem, 70vw, 18rem);
   width: 100%;
   margin: 30px 0;
   padding: 1.75rem 2.25rem;

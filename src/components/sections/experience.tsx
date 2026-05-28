@@ -32,7 +32,6 @@ export function Experience() {
           <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
         </motion.div>
 
-        <div className="mx-auto" style={{ maxWidth: '52rem' }}>
         {/* useWindowScroll syncs with the page scroll — no sub-container, no scrollbar */}
         <ScrollStack
           useWindowScroll={true}
@@ -135,7 +134,6 @@ export function Experience() {
             );
           })}
         </ScrollStack>
-        </div>
       </div>
     </section>
   );
