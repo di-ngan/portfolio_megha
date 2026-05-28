@@ -5,7 +5,7 @@ export const portfolio = {
     summary: 'Creative and data-driven marketing communication professional with experience in digital campaigns, creator collaborations, content strategy, and brand storytelling. Passionate about building meaningful communication that drives engagement and impact.',
     image: '/images/profile.jpg',
     stats: [
-      { label: 'Years Experience', value: '3+' },
+      { label: 'Years Experience', value: '2+' },
       { label: 'Campaigns Executed', value: '15+' },
       { label: 'Content Projects', value: '50+' },
       { label: 'Certifications', value: '4' },

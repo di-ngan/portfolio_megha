@@ -35,7 +35,7 @@
   text-decoration: none;
   white-space: nowrap;
   font-weight: 600;
-  font-size: 4vh;
+  font-size: clamp(12px, 4.5vw, 4vh);
   letter-spacing: 0.05em;
 }
 
@@ -83,17 +83,23 @@
   white-space: nowrap;
   text-transform: uppercase;
   font-weight: 400;
-  font-size: 4vh;
+  font-size: clamp(12px, 4.5vw, 4vh);
   line-height: 1;
   padding: 0 1vw;
 }
 
 .marquee__img {
-  width: 200px;
+  width: clamp(60px, 12vw, 200px);
   height: 7vh;
-  margin: 2em 2vw;
+  margin: 2em clamp(0.5vw, 2vw, 2vw);
   padding: 1em 0;
   border-radius: 50px;
   background-size: cover;
   background-position: 50% 50%;
+}
+
+@media (max-width: 639px) {
+  .marquee__img {
+    height: 5vh;
+  }
 }

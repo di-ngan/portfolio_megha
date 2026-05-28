@@ -19,6 +19,7 @@ const navItems = [
 
 export function Navbar() {
   const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -26,6 +27,13 @@ export function Navbar() {
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
   }, []);
 
   const dockItems: DockItemData[] = navItems.map(item => ({
@@ -52,14 +60,14 @@ export function Navbar() {
             zIndex: 50,
             pointerEvents: 'none',
             overflow: 'visible',
-            height: '90px',
+            height: isMobile ? '70px' : '90px',
           }}
         >
           <Dock
             items={dockItems}
-            panelHeight={68}
-            baseItemSize={50}
-            magnification={70}
+            panelHeight={isMobile ? 52 : 68}
+            baseItemSize={isMobile ? 36 : 50}
+            magnification={isMobile ? 50 : 70}
           />
         </motion.div>
       )}
