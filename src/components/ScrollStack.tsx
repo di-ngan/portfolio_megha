@@ -52,6 +52,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map<number, { translateY: number; scale: number; rotation: number; blur: number }>());
   const isUpdatingRef = useRef(false);
+  // Cached layout offsets — NOT affected by CSS transforms, unlike getBoundingClientRect
+  const cardTopOffsetsRef = useRef<number[]>([]);
+  const endElementOffsetRef = useRef<number>(0);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -80,15 +83,38 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     };
   }, [useWindowScroll]);
 
-  const getElementOffset = useCallback(
-    (element: HTMLElement) => {
-      if (useWindowScroll) {
-        return element.getBoundingClientRect().top + window.scrollY;
+  // Cache natural (pre-transform) document offsets so that scroll calculations
+  // are not affected by the CSS transforms we apply. Using getBoundingClientRect
+  // on transformed elements creates a feedback loop (shifted rect → wrong
+  // translateY → shifted rect again) that causes the shivering effect.
+  const cacheOffsets = useCallback(() => {
+    const cards = cardsRef.current;
+    if (!cards.length) return;
+
+    if (useWindowScroll) {
+      // Temporarily clear inline transforms so getBoundingClientRect returns
+      // the natural document position (this is synchronous — no visual flash).
+      const saved = cards.map(c => c.style.transform);
+      cards.forEach(c => { c.style.transform = ''; });
+
+      cards.forEach((card, i) => {
+        cardTopOffsetsRef.current[i] = card.getBoundingClientRect().top + window.scrollY;
+      });
+
+      const endEl = document.querySelector('.scroll-stack-end') as HTMLElement | null;
+      if (endEl) {
+        endElementOffsetRef.current = endEl.getBoundingClientRect().top + window.scrollY;
       }
-      return element.offsetTop;
-    },
-    [useWindowScroll]
-  );
+
+      cards.forEach((c, i) => { c.style.transform = saved[i]; });
+    } else {
+      cards.forEach((card, i) => {
+        cardTopOffsetsRef.current[i] = card.offsetTop;
+      });
+      const endEl = scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement | null;
+      if (endEl) endElementOffsetRef.current = endEl.offsetTop;
+    }
+  }, [useWindowScroll]);
 
   const updateCardTransforms = useCallback(() => {
     if (!cardsRef.current.length || isUpdatingRef.current) return;
@@ -97,19 +123,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const { scrollTop, containerHeight } = getScrollData();
     const stackPositionPx = parsePercentage(stackPosition, containerHeight);
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
-
-    const endEl = useWindowScroll
-      ? (document.querySelector('.scroll-stack-end') as HTMLElement)
-      : (scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement);
-    const endElementTop = endEl ? getElementOffset(endEl) : 0;
+    const endElementTop = endElementOffsetRef.current;
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
 
-      const cardTop = getElementOffset(card);
+      const cardTop = cardTopOffsetsRef.current[i] ?? 0;
       const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
       const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
+      const pinStart = triggerStart;
       const pinEnd = endElementTop - containerHeight / 2;
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
@@ -121,7 +143,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       if (blurAmount) {
         let topCardIndex = 0;
         for (let j = 0; j < cardsRef.current.length; j++) {
-          const jCardTop = getElementOffset(cardsRef.current[j]);
+          const jCardTop = cardTopOffsetsRef.current[j] ?? 0;
           const jTriggerStart = jCardTop - stackPositionPx - itemStackDistance * j;
           if (scrollTop >= jTriggerStart) topCardIndex = j;
         }
@@ -172,7 +194,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [
     itemScale, itemStackDistance, stackPosition, scaleEndPosition, baseScale,
     rotationAmount, blurAmount, useWindowScroll, onStackComplete,
-    calculateProgress, parsePercentage, getScrollData, getElementOffset,
+    calculateProgress, parsePercentage, getScrollData,
   ]);
 
   const handleScroll = useCallback(() => {
@@ -248,10 +270,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       card.style.perspective = '1000px';
     });
 
+    cacheOffsets();
     setupLenis();
     updateCardTransforms();
 
+    const handleResize = () => { cacheOffsets(); updateCardTransforms(); };
+    window.addEventListener('resize', handleResize, { passive: true });
+
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
       if (lenisRef.current) lenisRef.current.destroy();
       stackCompletedRef.current = false;
@@ -262,7 +289,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [
     itemDistance, itemScale, itemStackDistance, stackPosition, scaleEndPosition,
     baseScale, scaleDuration, rotationAmount, blurAmount, useWindowScroll,
-    onStackComplete, setupLenis, updateCardTransforms,
+    onStackComplete, setupLenis, updateCardTransforms, cacheOffsets,
   ]);
 
   return (

@@ -13,7 +13,7 @@ export function Hero() {
       <LineWavesBackground section="home" />
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/50 dark:from-primary/10 dark:via-transparent dark:to-background/80 pointer-events-none" />
 
-      <div className="relative z-10 w-full text-center px-6 sm:px-8 max-w-4xl mx-auto">
+      <div className="relative z-10 w-full text-center px-6 sm:px-8">
         <BlurText
           text="Hi, My name is Megha R K"
           delay={150}

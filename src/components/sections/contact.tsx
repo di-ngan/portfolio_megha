@@ -83,7 +83,7 @@ export function Contact() {
       <LineWavesBackground section="contact" />
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/50 dark:from-primary/10 dark:via-transparent dark:to-background/80 pointer-events-none" />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header — left-aligned like other sections */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -99,6 +99,7 @@ export function Contact() {
           </p>
         </motion.div>
 
+        <div className="max-w-3xl mx-auto">
         {/* Contact cards — vertical stack */}
         <motion.div
           initial="hidden"
@@ -224,6 +225,7 @@ export function Contact() {
             View Resume
           </button>
         </motion.div>
+        </div>
       </div>
 
       {/* Send Message Modal */}

@@ -20,7 +20,7 @@ export function Experience() {
       <LineWavesBackground section="experience" />
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/50 dark:from-primary/10 dark:via-transparent dark:to-background/80 pointer-events-none" />
 
-      <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: '52rem' }}>
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,6 +32,7 @@ export function Experience() {
           <div className="h-1 w-20 bg-gradient-to-r from-primary to-secondary rounded-full" />
         </motion.div>
 
+        <div className="mx-auto" style={{ maxWidth: '52rem' }}>
         {/* useWindowScroll syncs with the page scroll — no sub-container, no scrollbar */}
         <ScrollStack
           useWindowScroll={true}
@@ -134,6 +135,7 @@ export function Experience() {
             );
           })}
         </ScrollStack>
+        </div>
       </div>
     </section>
   );

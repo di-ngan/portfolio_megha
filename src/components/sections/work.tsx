@@ -5,20 +5,21 @@ import { LineWavesBackground } from '@/components/effects/LineWavesBackground';
 import CircularGallery from './CircularGallery';
 
 const workItems = [
-  { image: '/items/1.png', text: 'Brand Campaign' },
-  { image: '/items/3.png', text: 'Social Media' },
-  { image: '/items/4.png', text: 'Digital Ad' },
-  { image: '/items/5.png', text: 'Content Design' },
-  { image: '/items/flyer1 mudramalar.png', text: 'Mudramalar' },
-  { image: '/items/mudhra flyer 2.png', text: 'Mudhra' },
-  { image: '/items/labour day flyer.jpeg', text: 'Labour Day' },
-  { image: '/items/Blue And Black Classy Perfume Sale Instagram Post.png', text: 'Perfume Campaign' },
-  { image: '/items/Brown and Cream Modern Vanilla Perfume Instagram Post.png', text: 'Vanilla Perfume' },
-  { image: '/items/Pink Elegant Special Sale Perfume Instagram Post.png', text: 'Perfume Sale' },
-  { image: '/items/Colorful Planner Mobile App Promotion Instagram Post.png', text: 'App Promotion' },
-  { image: '/items/Sage Green Minimalist Natural Download App Facebook Post.png', text: 'App Download' },
-  { image: '/items/Pink and White Playful International Youth Day Instagram Post.png', text: 'Youth Day' },
-  { image: '/items/WhatsApp Image 2026-05-27 at 14.30.15.jpeg', text: 'Recent Work' },
+  { image: '/items/Scoutt.png', text: 'Scoutt Campaign' },
+  { image: '/items/Scoutt_2.png', text: 'Scoutt Social' },
+  { image: '/items/Scoutt_3.png', text: 'Scoutt Design' },
+  { image: '/items/p%26i_logistics.png', text: 'P&I Logistics' },
+  { image: '/items/p%26i_logistics_2.png', text: 'P&I Campaign' },
+  { image: '/items/p%26i_logistics_3.png', text: 'P&I Design' },
+  { image: '/items/p%26i_logistics_4.png', text: 'P&I Social' },
+  { image: '/items/Perfume.png', text: 'Perfume Campaign' },
+  { image: '/items/Perfume_2.png', text: 'Perfume Ad' },
+  { image: '/items/Perfume_3.png', text: 'Perfume Design' },
+  { image: '/items/mudra_1.png', text: 'Mudramalar' },
+  { image: '/items/mudra_2.png', text: 'Mudra Design' },
+  { image: '/items/Samudhra_Labour_Day.jpeg', text: 'Labour Day' },
+  { image: '/items/Samudhra_W_D.png', text: 'World Day' },
+  { image: '/items/Samudhra_Water_Day.png', text: 'Water Day' },
 ];
 
 export function Work() {
