@@ -53,7 +53,7 @@ export const filePaths = {
 
 // External links
 export const externalLinks = {
-  LINKEDIN: 'https://linkedin.com/in/megha-rk',
+  LINKEDIN: 'https://www.linkedin.com/in/megha-r-k-06a29024b/',
   TWITTER: 'https://twitter.com/megha',
   EMAIL: 'hello@megha.com',
 };

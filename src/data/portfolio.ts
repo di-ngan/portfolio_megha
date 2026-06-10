@@ -3,31 +3,32 @@ export const portfolio = {
     name: 'Megha R K',
     headline: 'Marketing Communication Professional | Brand Strategy | Campaign Management | Content & Communication',
     summary: 'Creative and data-driven marketing communication professional with experience in digital campaigns, creator collaborations, content strategy, and brand storytelling. Passionate about building meaningful communication that drives engagement and impact.',
-    image: '/images/profile.jpg',
+    image: '/images/profile1.jpeg',
     stats: [
-      { label: 'Years Experience', value: '2+' },
+      { label: 'Years Experience', value: '1+' },
       { label: 'Campaigns Executed', value: '15+' },
       { label: 'Content Projects', value: '50+' },
-      { label: 'Certifications', value: '4' },
+      { label: 'Certifications', value: '2' },
     ],
     cta: {
       primary: { text: 'View Portfolio', href: '#work' },
-      secondary: { text: 'Download Resume', href: '/resume.pdf' },
+      secondary: { text: 'Download Resume', href: '/images/Megha%20R%20K%20resume_260519_191147.pdf' },
       tertiary: { text: 'Contact Me', href: '#contact' },
     },
   },
   about: {
     title: 'About Me',
     summary:
-      'Creative and data-driven Digital Marketing & Communications professional with hands-on experience in influencer marketing, content planning, and campaign execution.',
+      'Creative professional at the start of my career, driven by a passion for storytelling, design, and digital innovation. I transform ideas into meaningful content and visual experiences — crafting copy, designing creatives, managing campaigns, and developing content strategies with curiosity and attention to detail.',
     philosophy:
-      '"Good communication combines audience understanding, storytelling, and measurable outcomes."',
+      '"I approach every project with curiosity, creativity, and attention to detail."',
     strengths: [
       'Storytelling',
-      'Audience Research',
-      'Creative Strategy',
-      'Collaboration',
-      'Data-driven Thinking',
+      'Content Writing',
+      'Graphic Design',
+      'Social Media Strategy',
+      'Digital Marketing',
+      'Creative Collaboration',
     ],
   },
   skills: {
@@ -68,7 +69,7 @@ export const portfolio = {
         'Meta Ads support',
       ],
       outcome: 'Improved content consistency and campaign support',
-      image: '/images/work/scoutt.jpg',
+      image: '/items/Scoutt.png',
     },
     {
       id: 2,
@@ -81,7 +82,7 @@ export const portfolio = {
         'Press coordination',
       ],
       outcome: 'Higher visibility and audience participation',
-      image: '/images/work/un-gender.jpg',
+      image: '/images/amrita%20alumni%20relations/1.png',
     },
     {
       id: 3,
@@ -94,7 +95,7 @@ export const portfolio = {
         'Audience engagement',
       ],
       outcome: 'Consistent audience interaction',
-      image: '/images/work/inkstains.jpg',
+      image: '/images/aura%20flyer/1.png',
     },
     {
       id: 4,
@@ -108,14 +109,20 @@ export const portfolio = {
         'Marketing collateral',
       ],
       outcome: 'Improved brand consistency',
-      image: '/images/work/samudhra.jpg',
+      image: '/images/samudhra%20flyer/1.png',
     },
   ],
   experience: [
     {
+      role: 'Freelance Designer & Social Media Manager',
+      company: 'Mudhra Malar Online Dance Academy',
+      period: 'May 2026 – Present',
+      description: 'Working closely with an online dance academy to create compelling visual content and manage its social media presence. Designing promotional posters, developing digital campaigns, maintaining brand consistency, and creating engaging content to connect with the academy\'s audience.',
+    },
+    {
       role: 'Digital Marketing Executive',
       company: 'Samudhra Shipping Solutions',
-      period: '2026–Present',
+      period: 'Feb 2026 – Apr 2026',
       description: 'Leading digital marketing initiatives and brand communication strategies',
     },
     {
@@ -162,6 +169,6 @@ export const portfolio = {
   contact: {
     email: 'megharamkumar2801@gmail.com',
     phone: '+91 9400817512',
-    linkedin: 'https://www.linkedin.com/in/megha-ramkumar',
+    linkedin: 'https://www.linkedin.com/in/megha-r-k-06a29024b/',
   },
 };
