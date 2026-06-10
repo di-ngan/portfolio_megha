@@ -134,6 +134,71 @@ export function Experience() {
             );
           })}
         </ScrollStack>
+
+        {/* Education */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-16 space-y-4"
+        >
+          <h3 className="text-2xl sm:text-3xl font-bold">Education</h3>
+          <div className="h-1 w-14 bg-gradient-to-r from-primary to-secondary rounded-full mb-6" />
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              {
+                degree: 'BA Journalism & Mass Communication',
+                institution: 'Calicut University',
+                period: 'Nov 2021 – Mar 2024',
+                accent: '#DD78A1',
+                glow: 'rgba(221,120,161,0.15)',
+              },
+              {
+                degree: 'MA Communication',
+                specialisation: 'Integrated Marketing Communication',
+                institution: 'Calicut University',
+                period: 'Jun 2024 – May 2026',
+                accent: '#78A1DD',
+                glow: 'rgba(120,161,221,0.15)',
+              },
+            ].map((edu, i) => (
+              <div
+                key={i}
+                className="relative rounded-2xl p-5 overflow-hidden"
+                style={{
+                  background: 'rgba(18, 14, 26, 0.42)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  boxShadow: `0 4px 24px rgba(0,0,0,0.3), 0 0 40px ${edu.glow}`,
+                }}
+              >
+                <div
+                  className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full"
+                  style={{ background: `linear-gradient(180deg, ${edu.accent} 0%, transparent 100%)` }}
+                />
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-16 rounded-l-2xl"
+                  style={{ background: `linear-gradient(90deg, ${edu.glow} 0%, transparent 100%)` }}
+                />
+                <div className="relative pl-3 space-y-1">
+                  <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: edu.accent }}>
+                    {edu.period}
+                  </p>
+                  <h4 className="text-base font-bold text-white leading-snug">{edu.degree}</h4>
+                  {'specialisation' in edu && (
+                    <p className="text-xs font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                      {edu.specialisation}
+                    </p>
+                  )}
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{edu.institution}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
