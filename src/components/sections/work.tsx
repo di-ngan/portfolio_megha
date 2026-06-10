@@ -5,6 +5,11 @@ import { LineWavesBackground } from '@/components/effects/LineWavesBackground';
 import CircularGallery from './CircularGallery';
 
 const workItems = [
+  { image: '/images/Mudra%20malar%20dance%20school/1.png', text: 'Mudramalar 1' },
+  { image: '/images/Mudra%20malar%20dance%20school/2.png', text: 'Mudramalar 2' },
+  { image: '/images/Mudra%20malar%20dance%20school/3.png', text: 'Mudramalar 3' },
+  { image: '/images/Mudra%20malar%20dance%20school/4.png', text: 'Mudramalar 4' },
+  { image: '/images/Mudra%20malar%20dance%20school/5.png', text: 'Mudramalar 5' },
   { image: '/images/amrita%20alumni%20relations/1.png', text: 'Amrita Alumni 1' },
   { image: '/images/amrita%20alumni%20relations/2.png', text: 'Amrita Alumni 2' },
   { image: '/images/amrita%20alumni%20relations/3.png', text: 'Amrita Alumni 3' },
@@ -22,18 +27,6 @@ const workItems = [
   { image: '/images/MERMAN%20FLYER%20002/5.png', text: 'Merman Flyer 5' },
   { image: '/images/MERMAN%20FLYER%20002/6.png', text: 'Merman Flyer 6' },
   { image: '/images/MERMAN%20FLYER%20002/7.png', text: 'Merman Flyer 7' },
-  { image: '/images/MERMAN%20FLYER%20002/8.png', text: 'Merman Flyer 8' },
-  { image: '/images/MERMAN%20FLYER%20002/9.png', text: 'Merman Flyer 9' },
-  { image: '/images/MERMAN%20FLYER%20002/10.png', text: 'Merman Flyer 10' },
-  { image: '/images/MERMAN%20FLYER%20002/11.png', text: 'Merman Flyer 11' },
-  { image: '/images/MERMAN%20FLYER%20002/12.png', text: 'Merman Flyer 12' },
-  { image: '/images/MERMAN%20FLYER%20002/13.png', text: 'Merman Flyer 13' },
-  { image: '/images/MERMAN%20FLYER%20002/14.png', text: 'Merman Flyer 14' },
-  { image: '/images/Mudra%20malar%20dance%20school/1.png', text: 'Mudramalar 1' },
-  { image: '/images/Mudra%20malar%20dance%20school/2.png', text: 'Mudramalar 2' },
-  { image: '/images/Mudra%20malar%20dance%20school/3.png', text: 'Mudramalar 3' },
-  { image: '/images/Mudra%20malar%20dance%20school/4.png', text: 'Mudramalar 4' },
-  { image: '/images/Mudra%20malar%20dance%20school/5.png', text: 'Mudramalar 5' },
   { image: '/images/samudhra%20flyer/1.png', text: 'Samudhra Flyer 1' },
   { image: '/images/samudhra%20flyer/2.png', text: 'Samudhra Flyer 2' },
   { image: '/images/samudhra%20flyer/3.png', text: 'Samudhra Flyer 3' },
@@ -43,6 +36,9 @@ const workItems = [
   { image: '/images/samudhra%20flyer/7.png', text: 'Samudhra Flyer 7' },
   { image: '/images/samudhra%20flyer/8.png', text: 'Samudhra Flyer 8' },
   { image: '/images/samudhra%20flyer/9.png', text: 'Samudhra Flyer 9' },
+  { image: '/images/scoutt/1.png', text: 'Scoutt 1' },
+  { image: '/images/scoutt/2.png', text: 'Scoutt 2' },
+  { image: '/images/scoutt/3.png', text: 'Scoutt 3' },
 ];
 
 export function Work() {

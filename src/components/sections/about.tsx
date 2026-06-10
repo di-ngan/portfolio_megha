@@ -81,7 +81,7 @@ export function About() {
           >
             <ProfileCard
               name="Megha R K"
-              title="Marketing Communication"
+              title="Marketing Communication Professional"
               handle="meghark"
               status="Open to work"
               contactText="Contact Me"
