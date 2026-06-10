@@ -158,7 +158,7 @@ export function Experience() {
               {
                 degree: 'MA Communication',
                 specialisation: 'Integrated Marketing Communication',
-                institution: 'Calicut University',
+                institution: 'Amrita Vishwa Vidhyapeetham Coimbatore, Amrita University',
                 period: 'Jun 2024 – May 2026',
                 accent: '#78A1DD',
                 glow: 'rgba(120,161,221,0.15)',
