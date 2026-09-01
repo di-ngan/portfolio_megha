@@ -120,7 +120,7 @@ export const portfolio = {
     {
       role: "Freelance Designer & Social Media Manager",
       company: "Mudhra Malar Online Dance Academy",
-      period: "May 2026 – Present",
+      period: "May 2026 – June",
       description:
         "Working closely with an online dance academy to create compelling visual content and manage its social media presence. Designing promotional posters, developing digital campaigns, maintaining brand consistency, and creating engaging content to connect with the academy's audience.",
     },
