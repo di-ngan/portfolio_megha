@@ -5,9 +5,9 @@ import './CircularGallery.css';
 
 type GL = Renderer['gl'];
 
-function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+function debounce<T extends (...args: unknown[]) => void>(func: T, wait: number) {
   let timeout: number;
-  return function (this: any, ...args: Parameters<T>) {
+  return function (this: unknown, ...args: Parameters<T>) {
     window.clearTimeout(timeout);
     timeout = window.setTimeout(() => func.apply(this, args), wait);
   };
@@ -17,11 +17,13 @@ function lerp(p1: number, p2: number, t: number): number {
   return p1 + (p2 - p1) * t;
 }
 
-function autoBind(instance: any): void {
+function autoBind<T extends object>(instance: T): void {
   const proto = Object.getPrototypeOf(instance);
+  const target = instance as Record<string, unknown>;
   Object.getOwnPropertyNames(proto).forEach(key => {
-    if (key !== 'constructor' && typeof instance[key] === 'function') {
-      instance[key] = instance[key].bind(instance);
+    const value = target[key];
+    if (key !== 'constructor' && typeof value === 'function') {
+      target[key] = value.bind(instance);
     }
   });
 }
@@ -300,6 +302,9 @@ class Media {
       texture.image = img;
       this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
     };
+    img.onerror = () => {
+      console.error(`CircularGallery: failed to load image "${this.image}"`);
+    };
   }
 
   createMesh() {
@@ -390,6 +395,8 @@ interface AppConfig {
   font?: string;
   scrollSpeed?: number;
   scrollEase?: number;
+  autoScroll?: boolean;
+  autoScrollSpeed?: number;
 }
 
 class App {
@@ -402,7 +409,7 @@ class App {
     last: number;
     position?: number;
   };
-  onCheckDebounce: (...args: any[]) => void;
+  onCheckDebounce: () => void;
   renderer!: Renderer;
   gl!: GL;
   camera!: Camera;
@@ -422,6 +429,9 @@ class App {
 
   isDown: boolean = false;
   start: number = 0;
+  autoScroll: boolean;
+  autoScrollSpeed: number;
+  isPaused: boolean = false;
 
   constructor(
     container: HTMLElement,
@@ -432,13 +442,17 @@ class App {
       borderRadius = 0,
       font = 'bold 30px Figtree',
       scrollSpeed = 2,
-      scrollEase = 0.05
+      scrollEase = 0.05,
+      autoScroll = true,
+      autoScrollSpeed = 0.01
     }: AppConfig
   ) {
     document.documentElement.classList.remove('no-js');
     this.container = container;
     this.scrollSpeed = scrollSpeed;
     this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+    this.autoScroll = autoScroll;
+    this.autoScrollSpeed = autoScrollSpeed;
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
     this.createRenderer();
     this.createCamera();
@@ -592,6 +606,20 @@ class App {
     this.scroll.target = this.scroll.target < 0 ? -item : item;
   }
 
+  setPaused(paused: boolean) {
+    this.isPaused = paused;
+  }
+
+  next() {
+    if (!this.medias || !this.medias[0]) return;
+    this.scroll.target += this.medias[0].width;
+  }
+
+  prev() {
+    if (!this.medias || !this.medias[0]) return;
+    this.scroll.target -= this.medias[0].width;
+  }
+
   onResize() {
     this.screen = {
       width: this.container.clientWidth,
@@ -611,6 +639,9 @@ class App {
   }
 
   update() {
+    if (this.autoScroll && !this.isPaused && !this.isDown) {
+      this.scroll.target += this.autoScrollSpeed;
+    }
     this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
     const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
     if (this.medias) {
@@ -653,6 +684,7 @@ class App {
     if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
       this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas as HTMLCanvasElement);
     }
+    this.gl?.getExtension('WEBGL_lose_context')?.loseContext();
   }
 }
 
@@ -664,6 +696,8 @@ interface CircularGalleryProps {
   font?: string;
   scrollSpeed?: number;
   scrollEase?: number;
+  autoScroll?: boolean;
+  autoScrollSpeed?: number;
 }
 
 export default function CircularGallery({
@@ -673,9 +707,13 @@ export default function CircularGallery({
   borderRadius = 0.05,
   font = 'bold 30px Figtree',
   scrollSpeed = 2,
-  scrollEase = 0.05
+  scrollEase = 0.05,
+  autoScroll = true,
+  autoScrollSpeed = 0.01
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const appRef = useRef<App | null>(null);
+
   useEffect(() => {
     if (!containerRef.current) return;
     const app = new App(containerRef.current, {
@@ -685,11 +723,47 @@ export default function CircularGallery({
       borderRadius,
       font,
       scrollSpeed,
-      scrollEase
+      scrollEase,
+      autoScroll,
+      autoScrollSpeed
     });
+    appRef.current = app;
     return () => {
+      appRef.current = null;
       app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
-  return <div className="circular-gallery" ref={containerRef} />;
+  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, autoScroll, autoScrollSpeed]);
+
+  const supportsHover = () =>
+    typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  return (
+    <div
+      className="circular-gallery-wrapper"
+      onMouseEnter={() => {
+        if (supportsHover()) appRef.current?.setPaused(true);
+      }}
+      onMouseLeave={() => {
+        if (supportsHover()) appRef.current?.setPaused(false);
+      }}
+    >
+      <div className="circular-gallery" ref={containerRef} role="img" aria-label="Photo gallery" />
+      <button
+        type="button"
+        className="circular-gallery-arrow circular-gallery-arrow-left"
+        onClick={() => appRef.current?.prev()}
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+      <button
+        type="button"
+        className="circular-gallery-arrow circular-gallery-arrow-right"
+        onClick={() => appRef.current?.next()}
+        aria-label="Next image"
+      >
+        ›
+      </button>
+    </div>
+  );
 }

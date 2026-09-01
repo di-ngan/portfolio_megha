@@ -41,7 +41,7 @@ export function Experience() {
           stackPosition="22%"
           scaleEndPosition="10%"
           baseScale={0.88}
-          blurAmount={0.8}
+          blurAmount={6}
         >
           {experience.map((exp, index) => {
             const c = cardColors[index % cardColors.length];
@@ -52,7 +52,7 @@ export function Experience() {
                 <div
                   className="absolute inset-0"
                   style={{
-                    background: 'rgba(18, 14, 26, 0.42)',
+                    background: 'rgba(12, 9, 18, 0.94)',
                     backdropFilter: 'blur(24px)',
                     WebkitBackdropFilter: 'blur(24px)',
                     borderRadius: '28px',
@@ -85,7 +85,7 @@ export function Experience() {
                 </div>
 
                 {/* Content */}
-                <div className="relative h-full flex flex-col justify-between">
+                <div className="relative h-full flex flex-col justify-between gap-4">
                   {/* Company + period */}
                   <div className="flex items-center justify-between gap-3">
                     <span
@@ -113,7 +113,7 @@ export function Experience() {
 
                   {/* Description + progress */}
                   <div className="space-y-3">
-                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.52)' }}>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
                       {exp.description}
                     </p>
                     <div className="flex items-center gap-2">
@@ -189,11 +189,11 @@ export function Experience() {
                   </p>
                   <h4 className="text-base font-bold text-white leading-snug">{edu.degree}</h4>
                   {'specialisation' in edu && (
-                    <p className="text-xs font-medium" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                    <p className="text-xs font-medium" style={{ color: 'rgba(255,255,255,0.72)' }}>
                       {edu.specialisation}
                     </p>
                   )}
-                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>{edu.institution}</p>
+                  <p className="text-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>{edu.institution}</p>
                 </div>
               </div>
             ))}

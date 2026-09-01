@@ -111,6 +111,13 @@ export const portfolio = {
   ],
   experience: [
     {
+      role: "Social Media Content Developer & Graphic Designer",
+      company: "Amrita University Alumni",
+      period: "Jun 2026 – Present",
+      description:
+        "Creating strategic digital content that strengthens Amrita Vishwa Vidyapeetham's brand presence and engagement across social media platforms, combining content strategy, copywriting, visual communication, and brand storytelling to connect with prospective students, alumni, academic communities, and industry stakeholders. Developing and executing social media content strategies aligned with institutional branding, designing graphics, carousels, posters, and event creatives, writing copy and campaign messaging for LinkedIn, Instagram, and Facebook, and producing visual content for university events, academic achievements, research initiatives, partnerships, admissions campaigns, and alumni engagement — while ensuring all creative assets maintain brand consistency, accessibility, and high visual standards.",
+    },
+    {
       role: "Freelance Designer & Social Media Manager",
       company: "Mudhra Malar Online Dance Academy",
       period: "May 2026 – Present",

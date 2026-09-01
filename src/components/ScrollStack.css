@@ -49,3 +49,14 @@
   width: 100%;
   height: 1px;
 }
+
+/* Narrow screens wrap longer copy onto many more lines — let the card grow
+   to fit its content instead of clipping it at the desktop fixed height. */
+@media (max-width: 640px) {
+  .scroll-stack-card {
+    height: auto;
+    min-height: 15rem;
+    overflow: visible;
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+}

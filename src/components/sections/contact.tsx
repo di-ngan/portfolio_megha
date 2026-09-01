@@ -130,7 +130,7 @@ export function Contact() {
                     {card.label}
                   </p>
                   <p className="text-sm font-medium text-white/90">{card.value}</p>
-                  <p className="text-xs text-white/35 mt-0.5">{card.hint}</p>
+                  <p className="text-xs text-white/55 mt-0.5">{card.hint}</p>
                 </div>
 
                 {/* Copy button — email only */}
@@ -141,7 +141,7 @@ export function Contact() {
                     onClick={copyEmail}
                     onKeyDown={e => e.key === 'Enter' && copyEmail(e as unknown as React.MouseEvent)}
                     className="shrink-0 flex items-center justify-center w-8 h-8 rounded-lg transition-colors cursor-pointer"
-                    style={{ background: copied ? 'rgba(94,207,168,0.15)' : 'rgba(255,255,255,0.06)', color: copied ? '#5ECFA8' : 'rgba(255,255,255,0.4)' }}
+                    style={{ background: copied ? 'rgba(94,207,168,0.15)' : 'rgba(255,255,255,0.06)', color: copied ? '#5ECFA8' : 'rgba(255,255,255,0.6)' }}
                     title="Copy email"
                   >
                     {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
@@ -272,7 +272,7 @@ export function Contact() {
                   <button
                     onClick={() => setIsModalOpen(false)}
                     className="p-1.5 rounded-lg hover:bg-white/8 transition-colors"
-                    style={{ color: 'rgba(255,255,255,0.4)' }}
+                    style={{ color: 'rgba(255,255,255,0.6)' }}
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -285,7 +285,7 @@ export function Contact() {
                       { id: 'email', label: 'Email', type: 'email', placeholder: 'your@email.com' },
                     ].map(field => (
                       <div key={field.id} className="space-y-1.5">
-                        <label htmlFor={field.id} className="text-[10px] font-semibold uppercase tracking-widest text-white/50">
+                        <label htmlFor={field.id} className="text-[10px] font-semibold uppercase tracking-widest text-white/65">
                           {field.label}
                         </label>
                         <input
@@ -296,7 +296,7 @@ export function Contact() {
                           onChange={handleChange}
                           placeholder={field.placeholder}
                           required
-                          className="w-full px-3.5 py-2.5 rounded-xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-[#DD78A1]/50 transition-all"
+                          className="w-full px-3.5 py-2.5 rounded-xl text-sm text-white placeholder:text-white/40 outline-none focus:ring-1 focus:ring-[#DD78A1]/50 transition-all"
                           style={{ background: 'rgba(255,255,255,0.055)', border: '1px solid rgba(255,255,255,0.09)' }}
                         />
                       </div>
@@ -304,7 +304,7 @@ export function Contact() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-[10px] font-semibold uppercase tracking-widest text-white/50">
+                    <label htmlFor="message" className="text-[10px] font-semibold uppercase tracking-widest text-white/65">
                       Message
                     </label>
                     <textarea
@@ -315,7 +315,7 @@ export function Contact() {
                       placeholder="Tell me about your project or opportunity…"
                       rows={4}
                       required
-                      className="w-full px-3.5 py-2.5 rounded-xl text-sm text-white placeholder:text-white/25 outline-none focus:ring-1 focus:ring-[#DD78A1]/50 transition-all resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl text-sm text-white placeholder:text-white/40 outline-none focus:ring-1 focus:ring-[#DD78A1]/50 transition-all resize-none"
                       style={{ background: 'rgba(255,255,255,0.055)', border: '1px solid rgba(255,255,255,0.09)' }}
                     />
                   </div>

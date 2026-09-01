@@ -70,7 +70,7 @@ export function Work() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          style={{ height: '600px', position: 'relative' }}
+          className="relative h-[360px] sm:h-[440px] md:h-[520px] lg:h-[600px]"
         >
           <CircularGallery
             items={workItems}
